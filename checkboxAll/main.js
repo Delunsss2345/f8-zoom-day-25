@@ -38,7 +38,9 @@ tableCheckboxs.forEach(tableCheckbox => {
             if(cnt === 0) {
                 inputAll.indeterminate = false ; 
                 inputAll.checked = false ;
-            }
+            } else if(cnt === inputs.length) { 
+                inputAll.checked = true ;
+                inputAll.indeterminate = false ;  }
         }
     });
 });
