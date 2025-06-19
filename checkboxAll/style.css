@@ -77,3 +77,8 @@ input[type="checkbox"]:disabled:checked::after {
   margin-top: 16px;
   text-align: center;
 }
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
