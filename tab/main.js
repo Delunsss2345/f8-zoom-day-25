@@ -1,6 +1,6 @@
-const tabs = document.querySelectorAll('[data-tabs]') ; 
-
-let tabFocus = null;
+const tabs = document.querySelectorAll('[data-tabsIndex]') ; 
+let tabChecked = null;
+let currentTabIndex = 0 ; 
 tabs.forEach(tab => {
     const tabItems = tab.querySelectorAll('[data-tab]');
     tabItems.forEach(tabItem => {
@@ -16,28 +16,33 @@ tabs.forEach(tab => {
         
     });
   
-    tab.addEventListener("mouseenter", () => {
-        tabFocus = tab;
-    })
-
-    tab.addEventListener("mouseleave", () => {
-        tabFocus = null;
-    });    
+    
+});
+document.addEventListener("click", (e) => {
+    const tabMain = e.target.closest('[data-tabsIndex]');
+    if (tabMain) {
+        tabChecked = tabMain;
+    }
 });
 
-
 document.addEventListener("keydown", (e) => {
-    if (!tabFocus) return;
+    if (!tabChecked) return;
     const key = e.key;
     
-    if (!/^[1-9]$/.test(key)) return;
+    if (!/^[1-9]$/.test(key) && key !== 'Tab') return;
 
+    if (key === 'Tab') {
+        e.preventDefault() ; 
+        currentTabIndex = ( currentTabIndex + 1 ) % tabs.length ; 
+        tabChecked = tabs[currentTabIndex];
+        return;
+    }
 
-    const tabItem = tabFocus.querySelector(`[data-tab="${key}"]`);
-    const tabContent = tabFocus.querySelector(`[data-tabContent="${key}"]`);
+    const tabItem = tabChecked.querySelector(`[data-tab="${key}"]`);
+    const tabContent = tabChecked.querySelector(`[data-tabContent="${key}"]`);
 
     if (tabItem && tabContent) {
-        const tabAndContent = tabFocus.querySelectorAll('.active');
+        const tabAndContent = tabChecked.querySelectorAll('.active');
         tabAndContent.forEach(ct => ct.classList.remove("active"));
 
         tabItem.classList.add("active");
