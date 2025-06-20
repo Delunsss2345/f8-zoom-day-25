@@ -1,0 +1,25 @@
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: white;
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+    border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
